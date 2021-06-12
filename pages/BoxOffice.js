@@ -55,7 +55,9 @@ const BoxOffice = ({navigation}) => {
           return (
             <ListItem
               onPress={() => {
-                navigation.navigate('Details', {title: movie.movieNm});
+                navigation.navigate('Details', {
+                  movieCd: movie.movieCd,
+                });
               }}
               key={movie.movieCd}>
               <Rank>{movie.rank}</Rank>
