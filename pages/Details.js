@@ -21,7 +21,30 @@ const Discription = styled.Text`
   font-size: 18px;
   line-height: 28px;
 `;
-const Back = styled.Button``;
+const Back = styled.TouchableOpacity`
+  height: 50px;
+  padding: 12px;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+`;
+const BackLabel = styled.Text`
+  font-size: 18px;
+  color: #0000cc;
+`;
+const Header = styled.View`
+  height: 50px;
+  border-bottom-color: #e5e5e5;
+  border-bottom-width: 1px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+`;
+const HeaderTitle = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+`;
 
 const Details = ({route, navigation}) => {
   const [info, setInfo] = useState(null);
@@ -38,6 +61,12 @@ const Details = ({route, navigation}) => {
   }, []);
   return (
     <Container>
+      <Header>
+        <Back onPress={() => navigation.goBack()}>
+          <BackLabel>Go Back</BackLabel>
+        </Back>
+        <HeaderTitle>Movie Details</HeaderTitle>
+      </Header>
       <Contents>
         {info === null ? (
           <ActivityIndicator size={'large'} />
@@ -61,7 +90,6 @@ const Details = ({route, navigation}) => {
             </Discription>
           </>
         )}
-        <Back title={'Back'} onPress={() => navigation.goBack()} />
       </Contents>
     </Container>
   );
