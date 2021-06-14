@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import {useState} from 'react';
 import {ActivityIndicator} from 'react-native';
 import moment from 'moment';
+import fetch from '../net/fetch';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -52,10 +52,9 @@ const Details = ({route, navigation}) => {
     let url =
       'https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=44b818915a512b775f1986399059f4d4';
     url += '&movieCd=' + route.params.movieCd;
-    axios
-      .get(url)
-      .then(response => {
-        setInfo(response.data.movieInfoResult.movieInfo);
+    fetch(url)
+      .then(data => {
+        setInfo(data.movieInfoResult.movieInfo);
       })
       .catch(err => alert(err.message));
   }, []);

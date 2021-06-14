@@ -7,7 +7,7 @@ import MovieName from '../components/MovieName';
 
 import axios from 'axios';
 import {ActivityIndicator} from 'react-native';
-import {set} from 'lodash';
+import fetch from '../net/fetch';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -34,18 +34,16 @@ const Search = ({navigation}) => {
       'https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=44b818915a512b775f1986399059f4d4';
     url += '&movieNm=' + keyword;
     setIsLoading(true);
-    axios
-      .get(url)
-      .then(response => {
-        setList(response.data.movieListResult.movieList);
-        if (response.data.movieListResult.movieList.length === 0) {
-          setNoData(true);
-        } else {
-          setNoData(false);
-        }
-        setIsLoading(false);
-      })
-      .catch(err => alert(err));
+    axios.get(url).then(response => {
+      setList(response.data.movieListResult.movieList);
+      if (response.data.movieListResult.movieList.length === 0) {
+        setNoData(true);
+      } else {
+        setNoData(false);
+      }
+      setIsLoading(false);
+    });
+
     setKeyword('');
   }, [keyword]);
 

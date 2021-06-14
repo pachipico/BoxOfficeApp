@@ -9,14 +9,14 @@ const AppNavigator = () => {
   return (
     <Drawer.Navigator>
       <Drawer.Screen
-        name="SearchNavigator"
-        component={SearchNavigator}
-        options={{drawerLabel: 'Search'}}
-      />
-      <Drawer.Screen
         name="BoxOfficeNavigator"
         component={BoxOfficeNavigator}
         options={{drawerLabel: 'BoxOffice'}}
+      />
+      <Drawer.Screen
+        name="SearchNavigator"
+        component={SearchNavigator}
+        options={{drawerLabel: 'Search'}}
       />
     </Drawer.Navigator>
   );
